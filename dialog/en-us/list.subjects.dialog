@@ -1,0 +1,2 @@
+number {id} is from {sender}. Its subject is {subject}.
+number {id}'s subject is {subject}. Its from {sender}.
