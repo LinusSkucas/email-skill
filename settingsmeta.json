@@ -3,23 +3,11 @@
     "skillMetadata": {
         "sections": [
             {
-                "name": "Options << Name of section",
-                "fields": [
-                    {
-                        "name": "internal_python_variable_name",
-                        "type": "text",
-                        "label": "Setting Friendly Display Name",
-                        "value": "",
-                        "placeholder": "demo prompt in the input box"
-                    }
-                ]
-            },
-            {
-                "name": "Login << Name of another section",
+                "name": "Email Login",
                 "fields": [
                     {
                         "type": "label",
-                        "label": "Just a little bit of extra info for the user to understand following settings"
+                        "label": "Enter your email and password that you sign into your email account with:"
                     },
                     {
                         "name": "username",
@@ -34,7 +22,34 @@
                         "value": ""
                     }
                 ]
-            }
+            },
+	    {
+	         "name": "Email Server Settings",
+		 "fields": [
+			 {
+			   "type": "label",
+			   "label": "Enter your <b> IMAP </b>  email server settings. To access gmail, go to <a href='https://bit.ly/gmailimap'>Google Support.</a> To find your email server and port, <a href='https://bit.ly/imapservers'>go here.</a> Make sure you get the IMAP email server!"
+		         },
+			 {
+			   "name": "server",
+			   "type": "text",
+			   "label": "IMAP Email Server:",
+			   "value": ""
+			 },
+			 {
+			   "name": "port",
+			   "type": "number",
+			   "label": "Port (this is usually 993):",
+			   "value": ""
+			 },
+			 {
+			   "name": "folder",
+			   "type": "text",
+			   "label": "Folder you want to check. Normally Inbox.",
+			   "value": "Inbox"
+			 }
+		]
+	    }
         ]
     }
 }

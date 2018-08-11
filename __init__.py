@@ -1,5 +1,33 @@
 from mycroft import MycroftSkill, intent_file_handler
-from check_email import list_new_email
+import sys
+import imaplib
+import email
+import email.header
+
+def list_new_email(account, folder, password, port, address):
+    M = imaplib.IMAP4_SSL(str(address), port=int(port))
+    M.login(str(account), str(password))
+    M.select(str(folder))
+    #TODO: PROCESS INBOX
+    rv, data = M.search(None, "(UNSEEN)")
+    message_num = 1
+    new_emails = []
+    for num in data[0].split():
+        rv, data = M.fetch(num, '(RFC822)')
+        msg = email.message_from_bytes(data[0][1])
+        hdr = email.header.make_header(email.header.decode_header(msg['Subject']))
+        sender = email.header.make_header(email.header.decode_header(msg['From']))
+        M.store(num, "-FLAGS", '\\SEEN')
+        subject = str(hdr)
+        sender = str(sender)
+        mail = {"message_num": message_num, "sender": sender, "subject": subject}
+        new_emails.append(mail)
+        message_num += 1
+    
+    M.close()
+    M.logout()
+
+    return new_emails
 
 class Email(MycroftSkill):
     def __init__(self):
@@ -8,7 +36,7 @@ class Email(MycroftSkill):
     @intent_file_handler('check.email.intent')
     def handle_email(self, message):
        #Get settings
-       first_run = self.settings.get('first_run')
+       first_run = self.settings.get('username')
        if first_run == None:
            self.speak_dialog("setup")
            return
@@ -18,7 +46,7 @@ class Email(MycroftSkill):
        port = self.settings.get("port")
        server = self.settings.get('server')
        #check email
-       new_emails = list_new_email(account=account, folder=folder, password=password, port=port, server=server)
+       new_emails = check_email.list_new_email(account=account, folder=folder, password=password, port=port, server=server)
        #report back
        for x in range(0, len(new_emails)):
            self.speak_dialog("list.subjects", data=new_emails[x])
