@@ -45,8 +45,15 @@ class Email(MycroftSkill):
        password = self.settings.get('password')
        port = self.settings.get("port")
        #check email
-       new_emails = list_new_email(account=account, folder=folder, password=password, port=port, address=server)
-       
+       try:
+           new_emails = list_new_email(account=account, folder=folder, password=password, port=port, address=server)
+       except Exception as e:
+           self.speak_dialog("error.getting.mail")
+           return
+       if len(new_emails) == 0:
+           self.speak_dialog("no.new.email")
+           return
+
        #report back
        for x in range(0, len(new_emails)):
            new_email = new_emails[x]
