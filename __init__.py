@@ -36,20 +36,21 @@ class Email(MycroftSkill):
     @intent_file_handler('check.email.intent')
     def handle_email(self, message):
        #Get settings
-       first_run = self.settings.get('username')
-       if first_run == None:
+       account = self.settings.get('username')
+       server = self.settings.get("server")
+       if account == None or account == "" or server == None or server == "":
            self.speak_dialog("setup")
            return
-       account = self.settings.get('username')
        folder = self.settings.get('folder')
        password = self.settings.get('password')
        port = self.settings.get("port")
-       server = self.settings.get('server')
        #check email
-       new_emails = check_email.list_new_email(account=account, folder=folder, password=password, port=port, server=server)
+       new_emails = list_new_email(account=account, folder=folder, password=password, port=port, address=server)
+       
        #report back
        for x in range(0, len(new_emails)):
-           self.speak_dialog("list.subjects", data=new_emails[x])
+           new_email = new_emails[x]
+           self.speak_dialog("list.subjects", data=new_email)
 
 def create_skill():
     return Email()

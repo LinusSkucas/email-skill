@@ -1,2 +1,2 @@
-number {id} is from {sender}. Its subject is {subject}.
-number {id}'s subject is {subject}. Its from {sender}.
+number {message_num} is from {sender}. Its subject is {subject}.
+number {message_num}'s subject is {subject}. Its from {sender}.
