@@ -28,7 +28,7 @@
 		 "fields": [
 			 {
 			   "type": "label",
-			   "label": "Enter your <b> IMAP </b>  email server settings. To access gmail, go to <a href='https://bit.ly/Gmailimap'>Google Support.</a> To find your email server and port, <a href='https://bit.ly/Imapservers'>go here.</a> Make sure you get the IMAP email server!"
+			   "label": "Enter your <b> IMAP </b>  email server settings. To access gmail, go to <a href='https://bit.ly/Gmailimap'>Google Support.</a> To find your email server and port, <a href='https://bit.ly/Imapservers'>go here.</a> Make sure you get the IMAP email server! If you don't want to enter your username and password, and you're technical, go <a href='https://bit.ly/mycroft-email-security'> here.</a>"
 		         },
 			 {
 			   "name": "server",

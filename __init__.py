@@ -39,8 +39,12 @@ class Email(MycroftSkill):
        account = self.settings.get('username')
        server = self.settings.get("server")
        if account == None or account == "" or server == None or server == "":
-           self.speak_dialog("setup")
-           return
+           config = self.config_core.get("email_login", {})
+           account = config.get("email")
+           password = config.get("password")
+           if account == None or account == "" or password == "" or password == None:
+               self.speak_dialog("setup")
+               return
        folder = self.settings.get('folder')
        password = self.settings.get('password')
        port = self.settings.get("port")
