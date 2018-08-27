@@ -1,2 +1,3 @@
 number {message_num} is from {sender}. Its subject is {subject}.
 number {message_num}'s subject is {subject}. Its from {sender}.
+message number {message_num} is from {sender}. Its subject is {subject}.
