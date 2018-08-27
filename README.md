@@ -1,27 +1,23 @@
-## Email
-Mycroft will check your email for you.
+# <img src='https://rawgithub.com/FortAwesome/Font-Awesome/master/advanced-options/raw-svg/solid/envelope.svg ' card_color='#BDC3C7' width='50' height='50' style='vertical-align:bottom'/> Email
+Have Mycroft check your email
 
-## Description
-This skill will check your email for you.Currently, this skill only lists the meta-data about the unread emails (The name of the sender and subject).
-Later, it will be able summarize the email for you.
+## About 
+With this skill, Mycroft can check your email. When you ask him, he can list your new emails. He will say the sender and the subject of each email.
 
-## Configuration
-This skill needs to be configured at https://home.mycroft.ai to work.
-To work, this skill needs:
- - Your email
- - Your email password
- - Your IMAP server address
- - Your IMAP server port
- - The folder you want to check
+## Examples 
+* "Check my email"
+* "Do I have any email?"
+* "Do I have any new emails?"
+* "Check my mail"
 
-More information on how to get this information is avalible on https://home.mycroft.ai once you have installed the skill.
+## Credits 
+Linus S (@LinusS1)
 
-## Examples
- - Check my email.
- - Check my mail.
- - Do I have any new mail?
+## Category
+**Productivity**
+Daily
 
-## Credits
-Linus S (LinusS1/brrn)
-
-
+## Tags
+#email
+#mail
+#emails
