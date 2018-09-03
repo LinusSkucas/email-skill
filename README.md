@@ -1,4 +1,4 @@
-# <img src='https://rawgithub.com/FortAwesome/Font-Awesome/master/advanced-options/raw-svg/solid/envelope.svg ' card_color='#BDC3C7' width='50' height='50' style='vertical-align:bottom'/> Email
+# <img src='https://rawgithub.com/FortAwesome/Font-Awesome/master/advanced-options/raw-svg/solid/envelope.svg' card_color='#BDC3C7' width='50' height='50' style='vertical-align:bottom'/> Email
 Have Mycroft check your email
 
 ## About 
