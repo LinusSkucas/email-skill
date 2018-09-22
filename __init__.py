@@ -1,3 +1,5 @@
+# Copyright 2018 Linus S
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -82,10 +84,21 @@ class Email(MycroftSkill):
            self.speak_dialog("no.new.email")
            return
 
+       stop_num = 10
        #report back
        for x in range(0, len(new_emails)):
            new_email = new_emails[x]
            self.speak_dialog("list.subjects", data=new_email)
+           #Say 10 emails, if more ask if user wants to hear them
+           if x == stop_num:
+               more = self.ask_yesno(prompt="more.emails")
+               if more == "no":
+                   self.speak_dialog("no.more.emails")
+                   break
+               elif more == "yes":
+                   stop_num += 10
+                   continue
+
 
 def create_skill():
     return Email()
