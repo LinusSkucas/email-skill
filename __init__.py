@@ -61,6 +61,7 @@ class Email(MycroftSkill):
        #Get settings on home
        account = self.settings.get('username')
        server = self.settings.get("server")
+       password = self.settings.get("password")
        if account == None or account == "" or server == None or server == "":
            config = self.config_core.get("email_login", {})
            account = config.get("email")#Get settings in config file
