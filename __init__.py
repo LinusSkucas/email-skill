@@ -70,7 +70,6 @@ class Email(MycroftSkill):
                self.speak_dialog("setup")
                return
        folder = self.settings.get('folder')
-       password = self.settings.get('password')
        port = self.settings.get("port")
        #check email
        try:
