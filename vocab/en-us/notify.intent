@@ -1,0 +1,8 @@
+tell me of (mail | email | new mail | email)
+tell me when I get (mail | email | new mail | new email)
+tell me when I get (a mail | an email | email) (from | by) {sender}
+tell me of (mail | email) (from | by) {sender}
+notify me of (mail | email | new mail | new email)
+notify me of (mail | email | new mail | new email) (from | by) {sender}
+notify me when I get (mail | email | new mail | new email)
+notify me when I get (a mail | an email | email) (from | by) {sender}
