@@ -3,3 +3,5 @@ settings.json
 runner.py
 __pycache__/
 .pytest_cache/
+
+__init__\.sublime-workspace
