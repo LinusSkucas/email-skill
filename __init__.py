@@ -85,6 +85,21 @@ class Email(MycroftSkill):
     def __init__(self):
         """Init"""
         MycroftSkill.__init__(self)
+        #SETup the passwords
+
+        self.account = self.settings.get('username')
+        self.password = self.settings.get('password')
+        server = self.settings.get("server")
+        if account == None or account == "" or server == None or server == "":
+            self.config = self.config_core.get("email_login", {})
+            self.account = config.get("email")#Get settings in config file
+            self.password = config.get("password")
+            if account == None or account == "" or password == "" or password == None:
+                #Not set up in file/home
+                self.speak_dialog("setup")
+                return
+        self.folder = self.settings.get('folder')
+        self.port = self.settings.get("port")
 
     def initialize(self):
         # Start the notification service if it was active when Mycroft quit
@@ -93,23 +108,10 @@ class Email(MycroftSkill):
             self.schedule_repeating_event(self.poll_emails, datetime.now(), EMAIL_POLL_INTERVAL, name='poll.emails')
 
     def poll_emails(self, data):
-        account = self.settings.get('username')
-        password = self.settings.get('password')
-        server = self.settings.get("server")
-        if account == None or account == "" or server == None or server == "":
-            config = self.config_core.get("email_login", {})
-            account = config.get("email")#Get settings in config file
-            password = config.get("password")
-            if account == None or account == "" or password == "" or password == None:
-                #Not set up in file/home
-                self.speak_dialog("setup")
-                return
-        folder = self.settings.get('folder')
-        port = self.settings.get("port")
         setting = self.settings.get('look_for_email')
         #check email
         try:
-            new_emails = list_new_email(account=account, folder=folder, password=password, port=port, address=server, whitelist = setting['whitelist'], mark_as_seen = True)
+            new_emails = list_new_email(account=self.account, folder=self.folder, password=self.password, port=self.port, address=self.server, whitelist = setting['whitelist'], mark_as_seen = True)
         except Exception as e:
             # Silently ignore errors
             return
@@ -143,23 +145,10 @@ class Email(MycroftSkill):
     def enquire_new_email(self, message):
         #get the sender
         sender = normalize_email(message.data.get('email'))
-        account = self.settings.get('username')
-        password = self.settings.get('password')
-        server = self.settings.get("server")
-        if account == None or account == "" or server == None or server == "":
-            config = self.config_core.get("email_login", {})
-            account = config.get("email")#Get settings in config file
-            password = config.get("password")
-            if account == None or account == "" or password == "" or password == None:
-                #Not set up in file/home
-                self.speak_dialog("setup")
-                return
-        folder = self.settings.get('folder')
-        port = self.settings.get("port")
         setting = self.settings.get('look_for_email')
         #check email
         try:
-            new_emails = list_new_email(account=account, folder=folder, password=password, port=port, address=server, whitelist = [sender], mark_as_seen = True)
+            new_emails = list_new_email(account=self.account, folder=self.folder, password=self.password, port=self.port, address=self.server, whitelist = [sender], mark_as_seen = True)
         except Exception as e:
             # Silently ignore errors
             return
@@ -277,23 +266,9 @@ class Email(MycroftSkill):
     @intent_file_handler('check.email.intent')
     def handle_email(self, message):
        """Get the new emails and speak it"""
-       #Get settings on home
-       account = self.settings.get('username')
-       server = self.settings.get("server")
-       password = self.settings.get("password")
-       if account == None or account == "" or server == None or server == "":
-           config = self.config_core.get("email_login", {})
-           account = config.get("email")#Get settings in config file
-           password = config.get("password")
-           if account == None or account == "" or password == "" or password == None:
-               #Not set up in file/home
-               self.speak_dialog("setup")
-               return
-       folder = self.settings.get('folder')
-       port = self.settings.get("port")
        #check email
        try:
-           new_emails = list_new_email(account=account, folder=folder, password=password, port=port, address=server)
+           new_emails = list_new_email(account=self.account, folder=self.folder, password=self.password, port=self.port, address=self.server)
        except Exception as e:
            #Error? give an error
            self.speak_dialog("error.getting.mail")
