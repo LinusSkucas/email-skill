@@ -107,6 +107,22 @@ class Email(MycroftSkill):
         if self.settings.get('look_for_mail'):
             self.schedule_repeating_event(self.poll_emails, datetime.now(), EMAIL_POLL_INTERVAL, name='poll.emails')
 
+    def report_email(self, new_emails):
+        stop_num = 10
+        #report back
+        for x in range(0, len(new_emails)):
+           new_email = new_emails[x]
+           self.speak_dialog("list.subjects", data=new_email)
+           #Say 10 emails, if more ask if user wants to hear them
+           if x == stop_num:
+               more = self.ask_yesno(prompt="more.emails")
+               if more == "no":
+                   self.speak_dialog("no.more.emails")
+                   break
+               elif more == "yes":
+                   stop_num += 10
+                   continue
+
     def poll_emails(self, data):
         setting = self.settings.get('look_for_email')
         #check email
@@ -126,20 +142,7 @@ class Email(MycroftSkill):
         if response != "yes": #localize
             return
         
-        #report back
-        for x in range(num_emails):
-            new_email = new_emails[x]
-            self.speak_dialog("list.subjects", data=new_email)
-
-            #Say 10 emails, if more ask if user wants to hear them
-            if x == stop_num:
-                more = self.ask_yesno(prompt="more.emails")
-                if more == "no":
-                    self.speak_dialog("no.more.emails")
-                    break
-                elif more == "yes":
-                    stop_num += 10
-                    continue
+        self.report_email(new_emails)
 
     @intent_file_handler('enquire.email.intent')
     def enquire_new_email(self, message):
@@ -158,26 +161,7 @@ class Email(MycroftSkill):
             self.speak_dialog("no.emails.from", data={'sender':sender})
             return
 
-        stop_num = 10
-        num_emails = len(new_emails)
-        response = self.ask_yesno(prompt="notify.read.email", data={"size" : num_emails})
-        if response != "yes": #localize
-            return
-        
-        #report back
-        for x in range(num_emails):
-            new_email = new_emails[x]
-            self.speak_dialog("list.subjects", data=new_email)
-
-            #Say 10 emails, if more ask if user wants to hear them
-            if x == stop_num:
-                more = self.ask_yesno(prompt="more.emails")
-                if more == "no":
-                    self.speak_dialog("no.more.emails")
-                    break
-                elif more == "yes":
-                    stop_num += 10
-                    continue
+        self.report_email(new_emails)
 
             
     @intent_file_handler('notify.intent')
@@ -278,20 +262,7 @@ class Email(MycroftSkill):
            self.speak_dialog("no.new.email")
            return
 
-       stop_num = 10
-       #report back
-       for x in range(0, len(new_emails)):
-           new_email = new_emails[x]
-           self.speak_dialog("list.subjects", data=new_email)
-           #Say 10 emails, if more ask if user wants to hear them
-           if x == stop_num:
-               more = self.ask_yesno(prompt="more.emails")
-               if more == "no":
-                   self.speak_dialog("no.more.emails")
-                   break
-               elif more == "yes":
-                   stop_num += 10
-                   continue
+        self.report_email(new_emails)
 
 
 def create_skill():
