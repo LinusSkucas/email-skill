@@ -1,0 +1,3 @@
+bericht {message_num} komt van {sender}. Het onderwerp is {subject}.
+Bericht {message_num} heeft als onderwerp {subject}. Het komt van {sender}. 
+Bericht {message_num} komt van {sender}. Het onderwerp is {subject}.
