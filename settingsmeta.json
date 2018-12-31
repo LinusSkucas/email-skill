@@ -1,5 +1,6 @@
 {
     "name": "Email",
+	"color": "#BDC3C7",
     "skillMetadata": {
         "sections": [
             {
@@ -40,7 +41,7 @@
 			   "name": "port",
 			   "type": "number",
 			   "label": "Port (this is usually 993):",
-			   "value": ""
+			   "value": 993
 			 },
 			 {
 			   "name": "folder",
