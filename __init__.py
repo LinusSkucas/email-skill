@@ -53,16 +53,20 @@ class Email(MycroftSkill):
         self.account = self.settings.get('username')
         self.password = self.settings.get('password')
         self.server = self.settings.get("server")
+        self.folder = self.settings.get('folder')
+        self.port = self.settings.get("port")
+
         if self.account is None or self.account == "" or self.server is None or self.server == "":
             self.config = self.config_core.get("email_login", {})
             self.account = self.config.get("email")#Get settings in config file
             self.password = self.config.get("password")
+            self.server = self.config.get("server")
+            self.port = self.config.get("port")
+            self.folder = self.config.get("folder")
             if self.account is None or self.account == "" or self.password == "" or self.password is None:
                 #Not set up in file/home
                 self.speak_dialog("setup")
                 return
-        self.folder = self.settings.get('folder')
-        self.port = self.settings.get("port")
 
     def initialize(self):
         # Start the notification service if it was active when Mycroft quit
