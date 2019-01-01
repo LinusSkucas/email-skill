@@ -81,8 +81,7 @@ class Email(MycroftSkill):
         """Report and say the email"""
         stop_num = 10
         #report back
-        for x in range(0, len(new_emails)):
-           new_email = new_emails[x]
+        for new_email in reversed(new_emails): # newest to oldest
            self.speak_dialog("list.subjects", data=new_email)
            #Say 10 emails, if more ask if user wants to hear them
            if x == stop_num:
