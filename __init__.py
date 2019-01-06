@@ -21,7 +21,7 @@ import email.header
 import email.utils
 import inflect
 
-EMAIL_POLL_INTERVAL = 120  # in seconds
+EMAIL_POLL_INTERVAL = 20  # in seconds
 
 
 def normalize_email(email):
@@ -84,7 +84,8 @@ class Email(MycroftSkill):
         """Report and say the email"""
         stop_num = 10
         # report back
-        for new_email in reversed(new_emails):  # newest to oldest
+        for x in range(0, len(new_emails)):
+            new_email = new_emails[x]
             self.speak_dialog("list.subjects", data=new_email)
             # Say 10 emails, if more ask if user wants to hear them
             if x == stop_num:
@@ -146,8 +147,8 @@ class Email(MycroftSkill):
         # check email
         try:
             new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
-                                             port=self.port, address=self.server, whitelist=setting['whitelist'],
-                                             mark_as_seen=True)
+                                        port=self.port, address=self.server, whitelist=setting['whitelist'],
+                                        mark_as_seen=True)
         except Exception as e:
             # Silently ignore errors
             return
@@ -172,7 +173,7 @@ class Email(MycroftSkill):
         # check email
         try:
             new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
-                                             port=self.port, address=self.server, whitelist=[sender], mark_as_seen=True)
+                                        port=self.port, address=self.server, whitelist=[sender], mark_as_seen=True)
         except Exception as e:
             # Silently ignore errors
             return
@@ -274,7 +275,7 @@ class Email(MycroftSkill):
         # check email
         try:
             new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
-                                             port=self.port, address=self.server)
+                                        port=self.port, address=self.server)
         except Exception as e:
             # Error? give an error
             self.speak_dialog("error.getting.mail")
