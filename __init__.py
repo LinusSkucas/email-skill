@@ -141,7 +141,7 @@ class Email(MycroftSkill):
         setting = self.settings.get('look_for_email')
         # check email
         try:
-            new_emails = list_new_email(account=self.account, folder=self.folder, password=self.password,
+            new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
                                         port=self.port, address=self.server, whitelist=setting['whitelist'],
                                         mark_as_seen=True)
         except Exception as e:
@@ -167,7 +167,7 @@ class Email(MycroftSkill):
         setting = self.settings.get('look_for_email')
         # check email
         try:
-            new_emails = list_new_email(account=self.account, folder=self.folder, password=self.password,
+            new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
                                         port=self.port, address=self.server, whitelist=[sender], mark_as_seen=True)
         except Exception as e:
             # Silently ignore errors
@@ -269,7 +269,7 @@ class Email(MycroftSkill):
         """Get the new emails and speak it"""
         # check email
         try:
-            new_emails = list_new_email(account=self.account, folder=self.folder, password=self.password,
+            new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
                                         port=self.port, address=self.server)
         except Exception as e:
             # Error? give an error
