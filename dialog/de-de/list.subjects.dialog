@@ -1,3 +1,3 @@
-nummer {message_num} ist von {sender}. Das Thema ist {subject}.
-nummer {message_num} zum Thema {subject}. ist von {sender}.
-Nachricht nummer {message_num} ist von {sender}. Das Thema ist {subject}.
+Nummer {message_num} ist von {sender}. Der Betreff ist {subject}.
+der Betreff von Nummer {message_num} ist {subject}. Sie ist von {sender}.
+Nachricht Nummer {message_num} ist von {sender}. Ihr Betreff ist {subject}.

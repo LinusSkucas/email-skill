@@ -1,0 +1,3 @@
+Le numéro {message_num} vient de {sender}. Son objet est {subject}.
+L'objet du numéro {message_num} est {subject}. Il vient de {sender}.
+Le message numéro {message_num} vient de {sender}. Son objet est {subject}.

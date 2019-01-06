@@ -1,3 +1,3 @@
-Número {message_num} de {sender}. El asunto es {subject}
-Mensaje {message_num} con asunto {subject} del remitente {sender}
-Mensaje número {message_num} de {sender} con asunto {subject}
+número {message_num} es de {sender}. El asunto es {subject}.
+censaje {message_num} con asunto {subject} del remitente {sender}.
+número {message_num} es de {sender}. El asunto es {subject}.
