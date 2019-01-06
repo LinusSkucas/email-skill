@@ -21,7 +21,7 @@ import email.header
 import email.utils
 import inflect
 
-EMAIL_POLL_INTERVAL = 120 # in seconds
+EMAIL_POLL_INTERVAL = 20  # in seconds
 
 def normalize_email(email):
     if not email:
@@ -39,10 +39,12 @@ def normalize_email(email):
 
     return result
 
+
 class Email(MycroftSkill):
     """The email skill
     Checks your emails for you
     """
+
     def __init__(self):
         """Init"""
         MycroftSkill.__init__(self)
@@ -58,13 +60,13 @@ class Email(MycroftSkill):
 
         if self.account is None or self.account == "" or self.server is None or self.server == "":
             self.config = self.config_core.get("email_login", {})
-            self.account = self.config.get("email")#Get settings in config file
+            self.account = self.config.get("email")  # Get settings in config file
             self.password = self.config.get("password")
             self.server = self.config.get("server")
             self.port = self.config.get("port")
             self.folder = self.config.get("folder")
             if self.account is None or self.account == "" or self.password == "" or self.password is None:
-                #Not set up in file/home
+                # Not set up in file/home
                 self.speak_dialog("setup")
                 return
 
@@ -80,19 +82,19 @@ class Email(MycroftSkill):
     def report_email(self, new_emails):
         """Report and say the email"""
         stop_num = 10
-        #report back
+        # report back
         for x in range(0, len(new_emails)):
-           new_email = new_emails[x]
-           self.speak_dialog("list.subjects", data=new_email)
-           #Say 10 emails, if more ask if user wants to hear them
-           if x == stop_num:
-               more = self.ask_yesno(prompt="more.emails")
-               if more == "no":
-                   self.speak_dialog("no.more.emails")
-                   break
-               elif more == "yes":
-                   stop_num += 10
-                   continue
+            new_email = new_emails[x]
+            self.speak_dialog("list.subjects", data=new_email)
+            # Say 10 emails, if more ask if user wants to hear them
+            if x == stop_num:
+                more = self.ask_yesno(prompt="more.emails")
+                if more == "no":
+                    self.speak_dialog("no.more.emails")
+                    break
+                elif more == "yes":
+                    stop_num += 10
+                    continue
 
     def list_new_email(self, account, folder, password, port, address, whitelist=None, mark_as_seen=False):
         """
@@ -141,9 +143,11 @@ class Email(MycroftSkill):
 
     def poll_emails(self, data):
         setting = self.settings.get('look_for_email')
-        #check email
+        # check email
         try:
-            new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password, port=self.port, address=self.server, whitelist = setting['whitelist'], mark_as_seen = True)
+            new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
+                                        port=self.port, address=self.server, whitelist=setting['whitelist'],
+                                        mark_as_seen=True)
         except Exception as e:
             # Silently ignore errors
             return
@@ -154,31 +158,31 @@ class Email(MycroftSkill):
 
         stop_num = 10
         num_emails = len(new_emails)
-        response = self.ask_yesno(prompt="notify.read.email", data={"size" : num_emails})
-        if response != "yes": #localize
+        response = self.ask_yesno(prompt="notify.read.email", data={"size": num_emails})
+        if response != "yes":  # localize
             return
 
         self.report_email(new_emails)
 
     @intent_file_handler('enquire.email.intent')
     def enquire_new_email(self, message):
-        #get the sender
+        # get the sender
         sender = normalize_email(message.data.get('email'))
         setting = self.settings.get('look_for_email')
-        #check email
+        # check email
         try:
-            new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password, port=self.port, address=self.server, whitelist = [sender], mark_as_seen = True)
+            new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
+                                        port=self.port, address=self.server, whitelist=[sender], mark_as_seen=True)
         except Exception as e:
             # Silently ignore errors
             return
 
         if not new_emails:
             # No new mail
-            self.speak_dialog("no.emails.from", data={'sender':sender})
+            self.speak_dialog("no.emails.from", data={'sender': sender})
             return
 
         self.report_email(new_emails)
-
 
     @intent_file_handler('notify.intent')
     def enable_email_polling(self, message):
@@ -187,9 +191,9 @@ class Email(MycroftSkill):
         if not setting:
             # The email notification service is not active yet
             if sender:
-                self.settings['look_for_email'] = { "whitelist" : [sender] }
+                self.settings['look_for_email'] = {"whitelist": [sender]}
             else:
-                self.settings['look_for_email'] = { "whitelist" : None }
+                self.settings['look_for_email'] = {"whitelist": None}
 
             # Start the notification service
             self.schedule_repeating_event(self.poll_emails, datetime.now(), EMAIL_POLL_INTERVAL, name='poll.emails')
@@ -198,7 +202,7 @@ class Email(MycroftSkill):
             if not setting['whitelist'] and sender:
                 # The user request that we look for a specific email, but we are already notifying all incoming mails
                 # Ask if the user wants to limit the notifications to that email
-                replace = self.ask_yesno(prompt="cancel.looking.for.all.look.specific", data={"email" : sender})
+                replace = self.ask_yesno(prompt="cancel.looking.for.all.look.specific", data={"email": sender})
                 if replace == "yes":
                     setting['whitelist'] = [sender]
                 else:
@@ -210,10 +214,11 @@ class Email(MycroftSkill):
                 return
             elif sender in setting['whitelist']:
                 # We were requested to look for emails by a specific person, but we are already doing that
-                self.speak_dialog("already.looking.for.specific", data={"email" : sender})
+                self.speak_dialog("already.looking.for.specific", data={"email": sender})
                 return
             elif setting['whitelist'] and not sender:
-                replace = self.ask_yesno(prompt="cancel.looking.for.specific.look.all", data={"email" : setting['whitelist']})
+                replace = self.ask_yesno(prompt="cancel.looking.for.specific.look.all",
+                                         data={"email": setting['whitelist']})
                 if replace == "yes":
                     setting['whitelist'] = None
                 else:
@@ -248,13 +253,13 @@ class Email(MycroftSkill):
 
             # Do we even look for that sender?
             if not sender in self.settings['look_for_email']['whitelist']:
-                self.speak_dialog("not.looking.for", data={"email" : sender})
+                self.speak_dialog("not.looking.for", data={"email": sender})
                 return
 
             if len(self.settings['look_for_email']['whitelist']) > 1:
                 # Remove the sender from the whitelist
                 self.settings['look_for_email']['whitelist'].remove(sender)
-                self.speak_dialog("stop.looking.for", data={"email" : sender})
+                self.speak_dialog("stop.looking.for", data={"email": sender})
             else:
                 # We don't have any email addresses to look for, so turn it off completely
                 self.settings['look_for_email'] = None
@@ -265,22 +270,22 @@ class Email(MycroftSkill):
 
     @intent_file_handler('check.email.intent')
     def handle_email(self, message):
-       """Get the new emails and speak it"""
-       #check email
-       try:
-           new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password, port=self.port, address=self.server)
-       except Exception as e:
-           #Error? give an error
-           self.speak_dialog("error.getting.mail")
-           return
-       if len(new_emails) == 0:
-           #No email? Say that.
-           self.speak_dialog("no.new.email")
-           return
+        """Get the new emails and speak it"""
+        # check email
+        try:
+            new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
+                                        port=self.port, address=self.server)
+        except Exception as e:
+            # Error? give an error
+            self.speak_dialog("error.getting.mail")
+            return
+        if len(new_emails) == 0:
+            # No email? Say that.
+            self.speak_dialog("no.new.email")
+            return
 
         self.report_email(new_emails)
 
 
 def create_skill():
     return Email()
-
