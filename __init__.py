@@ -83,9 +83,15 @@ class Email(MycroftSkill):
     def report_email(self, new_emails):
         """Report and say the email"""
         stop_num = 10
+        x = 0
         # report back
-        for new_email in reversed(new_emails): # newest to oldest
+        for idx, new_email in enumerate(list(reversed(new_emails)), start=1):  # newest to oldest
+            if self.lang == "en-us":  # TODO: localize this!
+                new_email["message_num"] = self._nice_number(idx)
+            else:
+                pass
             self.speak_dialog("list.subjects", data=new_email)
+            x += 1
             # Say 10 emails, if more ask if user wants to hear them
             if x == stop_num:
                 more = self.ask_yesno(prompt="more.emails")
@@ -123,12 +129,9 @@ class Email(MycroftSkill):
             if is_in_whitelist and mark_as_seen:
                 M.store(num, "+FLAGS", '\\SEEN')
             else:
-                M.store(num, "-FLAGS", '\\SEEN')  # Some email providers automaticly mark a message as seen: undo that.
-            # For english ordianals TODO: I should localize this
-            if self.lang == "en-us":
-                mail = {"message_num": self._nice_number(message_num), "sender": sender, "subject": subject}
-            else:
-                mail = {"message_num": message_num, "sender": sender, "subject": subject}
+                M.store(num, "-FLAGS", '\\SEEN')  # Some email providers automatically mark a message as seen: undo that
+            # For english ordinals TODO: I should localize this
+            mail = {"message_num": message_num, "sender": sender, "subject": subject}
             if not is_in_whitelist:
                 # The user does not want emails from that sender, skip it
                 continue
@@ -139,7 +142,7 @@ class Email(MycroftSkill):
         M.close()
         M.logout()
 
-        return new_emails
+        return list(new_emails)
 
     def poll_emails(self, data):
         setting = self.settings.get('look_for_email')
