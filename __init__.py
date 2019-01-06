@@ -149,8 +149,8 @@ class Email(MycroftSkill):
         # check email
         try:
             new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
-                                        port=self.port, address=self.server, whitelist=setting['whitelist'],
-                                        mark_as_seen=True)
+                                             port=self.port, address=self.server, whitelist=setting['whitelist'],
+                                             mark_as_seen=True)
         except Exception as e:
             # Silently ignore errors
             return
@@ -175,7 +175,7 @@ class Email(MycroftSkill):
         # check email
         try:
             new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
-                                        port=self.port, address=self.server, whitelist=[sender], mark_as_seen=True)
+                                             port=self.port, address=self.server, whitelist=[sender], mark_as_seen=True)
         except Exception as e:
             # Silently ignore errors
             return
@@ -277,7 +277,7 @@ class Email(MycroftSkill):
         # check email
         try:
             new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
-                                        port=self.port, address=self.server)
+                                             port=self.port, address=self.server)
         except Exception as e:
             # Error? give an error
             self.speak_dialog("error.getting.mail")
