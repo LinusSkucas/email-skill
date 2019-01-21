@@ -1,5 +1,5 @@
-comprueba mi correo electrónico.
+comprueba mi (email|correo electrónico).
 comprueba mi correo.
 ¿tengo algún correo nuevo?
-¿tengo algún correo?
-¿tengo algún correo electrónico nuevo?
+¿tengo algún (email|correo|correo electrónico)?
+¿tengo algún (email|correo|correo electrónico) nuevo?
