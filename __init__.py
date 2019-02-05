@@ -59,6 +59,7 @@ class Email(MycroftSkill):
         self.folder = self.settings.get('folder')
         self.port = self.settings.get("port")
 
+
         if self.account is None or self.account == "" or self.server is None or self.server == "":
             self.config = self.config_core.get("email_login", {})
             self.account = self.config.get("email")  # Get settings in config file
@@ -66,16 +67,17 @@ class Email(MycroftSkill):
             self.server = self.config.get("server")
             self.port = self.config.get("port")
             self.folder = self.config.get("folder")
-            if self.account is None or self.account == "" or self.password == "" or self.password is None:
-                # Not set up in file/home
-                self.speak_dialog("setup")
-                return
 
     def initialize(self):
         # Start the notification service if it was active when Mycroft quit
         self.remove_event('poll.emails')
         if self.settings.get('look_for_mail'):
             self.schedule_repeating_event(self.poll_emails, datetime.now(), EMAIL_POLL_INTERVAL, name='poll.emails')
+
+        if self.account is None or self.account == "" or self.password == "" or self.password is None:
+            # Not set up in file/home
+            self.speak_dialog("setup")
+            return
 
     def _nice_number(self, num):
         return self.i_engine.number_to_words(self.i_engine.ordinal(num))
@@ -122,7 +124,7 @@ class Email(MycroftSkill):
             sender = email.header.make_header(email.header.decode_header(msg['From']))  # Get sender
             from_email = email.utils.parseaddr(msg['From'])[1]
             subject = str(hdr)
-            sender = str(sender)
+            sender = str(sender).lower()
 
             is_in_whitelist = not whitelist or from_email in whitelist or any(
                 s.lower() in sender.lower().split(" ") for s in whitelist)
@@ -170,7 +172,7 @@ class Email(MycroftSkill):
     @intent_file_handler('enquire.email.intent')
     def enquire_new_email(self, message):
         # get the sender
-        sender = normalize_email(message.data.get('email'))
+        sender = message.data.get('email').lower()
         setting = self.settings.get('look_for_email')
         # check email
         try:
