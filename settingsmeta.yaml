@@ -6,9 +6,9 @@ skillMetadata:
         - type: label
           label: Enter your email and password that you sign into your email account with
         - name: username
-            type: text
-            label: Username
-            value: ""
+          type: text
+          label: Username
+          value: ""
         - name: password
           type: password
           label: Password
