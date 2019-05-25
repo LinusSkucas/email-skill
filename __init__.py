@@ -59,7 +59,6 @@ class Email(MycroftSkill):
         self.folder = self.settings.get('folder')
         self.port = self.settings.get("port")
 
-
         if self.account is None or self.account == "" or self.server is None or self.server == "":
             self.config = self.config_core.get("email_login", {})
             self.account = self.config.get("email")  # Get settings in config file

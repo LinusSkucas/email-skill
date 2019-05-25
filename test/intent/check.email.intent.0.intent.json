@@ -1,4 +1,4 @@
 {
-    "intent_type": "check.email.intent",
-    "utterance": "check my email"
+  "intent_type": "check.email.intent",
+  "utterance": "check my email"
 }

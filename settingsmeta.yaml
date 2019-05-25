@@ -1,0 +1,31 @@
+name: Email
+skillMetadata:
+  sections:
+    - name: Email Login
+      fields:
+        - type: label
+          label: Enter your email and password that you sign into your email account with
+        - name: username
+            type: text
+            label: Username
+            value: ""
+        - name: password
+          type: password
+          label: Password
+          value: ""
+    - name: Email Server Settings
+      fields:
+        - type: label
+          label: Enter your <b> IMAP </b>  email server settings. To access gmail, go to <a href='https://bit.ly/Gmailimap'>Google Support.</a> To find your email server and port, <a href='https://bit.ly/Imapservers'>go here.</a> Make sure you get the IMAP email server! If you don't want to enter your username and password, and you're technical, go <a href='https://bit.ly/mycroft-email-security'> here.</a>
+        - name: server
+          type: text
+          label: IMAP Email Server
+          value: ""
+        - name: port
+          type: number
+          label: Port (This is usually 993)
+          value: 993
+        - name: folder
+          type: text
+          label: Folder you want to check. Normally Inbox.
+          value: "Inbox"
