@@ -1,0 +1,3 @@
+numero {message_num} é de {sender}. Seu assunto é {subject}.
+número {message_num}'s subject is {subject}. É de {sender}.
+a mensagem número {message_num} é de {sender}. Seu assunto é {subject}.

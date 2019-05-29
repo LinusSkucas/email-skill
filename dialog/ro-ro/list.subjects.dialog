@@ -1,0 +1,3 @@
+numărul {message_num} este de la {sender}. Subiectul său este {subject}.
+subiectului mesajului numărul {message_num} este {subject}. De la {sender}.
+mesajul numărul {message_num} este de la {sender}. Subiectul său este {subject}.
