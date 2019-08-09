@@ -7,3 +7,5 @@ __pycache__/
 __init__\.sublime-workspace
 
 \.idea/
+
+\.DS_Store
