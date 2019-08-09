@@ -1,0 +1,3 @@
+nummer {message_num} er fra {sender} Dets emne er {subject}
+nummer {message_num} s emne er {subject} Dens fra {sender}
+Meddelelsesnummer {message_num} er fra {sender} Dets emne er {subject}

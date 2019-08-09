@@ -1,2 +1,2 @@
-Your {message_num} email is from {sender}. Its subject is {subject}.
-The {message_num} email's subject is {subject}. Its from {sender}.
+Your {message_num} email is from {sender} Its subject is {subject}
+The {message_num} email's subject is {subject} Its from {sender}

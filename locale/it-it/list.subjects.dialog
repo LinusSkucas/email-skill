@@ -1,3 +1,3 @@
-Messaggio numero {message_num} inviato da {sender}. L'oggetto è {subject}
-l'oggetto del numero {message_num} è {subject}. Inviato da {sender}.
-messaggio numero {message_num} inviato da {sender}. L'oggetto è {subject}
+messaggio numero {message_num} inviato da {sender} L'oggetto è {subject}
+l'oggetto del numero {message_num} è {subject} Inviato da {sender}
+messaggio numero {message_num} inviato da {sender} L'oggetto è {subject}

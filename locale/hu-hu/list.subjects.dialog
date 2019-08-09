@@ -1,3 +1,3 @@
-Üzenet száma: {message_num}, feladója: {sender}, tárgya: {subject}.
-Üzenet száma: {message_num}, melynek tárgya: {subject}. A küldő személy: {sender}
-Üzenet száma {message_num}, feladta: {sender}, {subject} címmel.
+Üzenet száma: {message_num}, feladója: {sender}, tárgya: {subject}
+Üzenet száma: {message_num}, melynek tárgya: {subject} A küldő személy: {sender}
+Üzenet száma {message_num}, feladta: {sender}, {subject} címmel
