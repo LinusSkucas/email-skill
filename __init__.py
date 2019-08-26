@@ -70,12 +70,12 @@ class Email(MycroftSkill):
             fs = FileSystemAccess(str(self.skill_id))
             if fs.exists("email_conf.yml"):
                 #  Use yml file for config
-                config = self.read_file("email_conf.yml")
+                config = fs.open("email_conf.yml", "r").read()
                 config = yaml.safe_load(config)
                 self.account = config.get("username")
                 self.password = config.get("password")
                 self.server = config.get("server_address")
-                self.folder = config.get("port")
+                self.folder = config.get("folder")
                 self.port = config.get("port")
 
             else:
@@ -189,7 +189,7 @@ class Email(MycroftSkill):
         stop_num = 10
         num_emails = len(new_emails)
         response = self.ask_yesno(prompt="notify.read.email", data={"size": num_emails})
-        if response != "yes":  # localize
+        if response != "yes":
             return
 
         self.report_email(new_emails)
