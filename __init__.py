@@ -89,7 +89,6 @@ class Email(MycroftSkill):
             return False
         return True
 
-
     def initialize(self):
         # Start the notification service if it was active when Mycroft quit
         self.remove_event('poll.emails')
@@ -98,16 +97,17 @@ class Email(MycroftSkill):
 
         self.update_credentials()
 
-
     def _nice_number(self, num):
         return self.i_engine.number_to_words(self.i_engine.ordinal(num))
-
 
     def report_email(self, new_emails):
         """Report and say the email"""
         stop_num = 10
         x = 0
         # report back
+        if not new_emails:
+            return
+
         for idx, new_email in enumerate(list(reversed(new_emails)), start=1):  # newest to oldest
             if self.lang == "en-us":  # TODO: localize this!
                 new_email["message_num"] = self._nice_number(idx)
@@ -124,7 +124,6 @@ class Email(MycroftSkill):
                 elif more == "yes":
                     stop_num += 10
                     continue
-
 
     def list_new_email(self, account, folder, password, port, address, whitelist=None, mark_as_seen=False):
         if self.update_credentials() is False:  # No credentials
@@ -170,7 +169,6 @@ class Email(MycroftSkill):
 
         return list(new_emails)
 
-
     def poll_emails(self, data):
         setting = self.settings.get('look_for_email')
         # check email
@@ -194,7 +192,6 @@ class Email(MycroftSkill):
 
         self.report_email(new_emails)
 
-
     @intent_file_handler('enquire.email.intent')
     def enquire_new_email(self, message):
         if self.update_credentials() is False:  # No credentials
@@ -216,7 +213,6 @@ class Email(MycroftSkill):
             return
 
         self.report_email(new_emails)
-
 
     @intent_file_handler('notify.intent')
     def enable_email_polling(self, message):
@@ -266,7 +262,6 @@ class Email(MycroftSkill):
             self.speak_dialog("update.notify.data")
         self.settings.store()
 
-
     @intent_file_handler('stop.intent')
     def disable_email_polling(self, message):
         if not self.settings.get('look_for_email'):
@@ -305,10 +300,10 @@ class Email(MycroftSkill):
 
         self.settings.store()
 
-
     @intent_file_handler('check.email.intent')
     def handle_email(self, message):
         """Get the new emails and speak it"""
+        self.log.info("Checking email...")
         # check email
         try:
             new_emails = self.list_new_email(account=self.account, folder=self.folder, password=self.password,
@@ -317,7 +312,8 @@ class Email(MycroftSkill):
             # Error? give an error
             self.speak_dialog("error.getting.mail")
             return
-        if len(new_emails) == 0:
+
+        if not new_emails:
             # No email? Say that.
             self.speak_dialog("no.new.email")
             return
