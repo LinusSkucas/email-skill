@@ -1,3 +1,2 @@
-número {message_num} es de {sender} El asunto es {subject}
-número {message_num} con asunto {subject} del remitente {sender}
-mensaje número {message_num} de {sender} El asunto es {subject}
+Tu correo {message_num} es de {sender}. El asunto es {subject}.
+El asunto del correo {message_num} es {subject} Es de {sender}.

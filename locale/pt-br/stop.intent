@@ -1,0 +1,8 @@
+Não me (notifique|avise) sobre ( email | emails | novos emails)
+Não me (notifique|avise) sobre ( email | emails | novos emails) ( vindo de | de ) {sender}
+Não me (notifique|avise) mais sobre ( email | emails | novos emails)
+Não me (notifique|avise) mais sobre ( email | emails | novos emails) ( de | vindo de ) {sender}
+Não me (fale|avise) sobre ( email | emails | novos emails)
+Não me (fale|avise) sobre ( email | emails | novos emails) ( vindo de | de ) {sender}
+Não me (fale|avise) mais sobre ( email | emails | novos emails) 
+Não me (fale|avise) mais sobre ( email | emails | novos emails) ( vindo de | de ) {sender}
