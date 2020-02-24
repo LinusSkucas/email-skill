@@ -14,6 +14,7 @@
 #
 from mycroft import MycroftSkill, intent_file_handler
 from mycroft.filesystem import FileSystemAccess
+from mycroft.skills.settings import save_settings
 from datetime import datetime
 import sys
 import imaplib
@@ -260,7 +261,7 @@ class Email(MycroftSkill):
                 setting['whitelist'].append(sender)
 
             self.speak_dialog("update.notify.data")
-        self.settings.store()
+        save_settings(self.root_dir, self.settings)
 
     @intent_file_handler('stop.intent')
     def disable_email_polling(self, message):
@@ -280,7 +281,7 @@ class Email(MycroftSkill):
                 self.settings['look_for_email'] = None
                 self.remove_event('poll.emails')
                 self.speak_dialog("stop.poll.emails")
-                self.settings.store()
+                save_settings(self.root_dir, self.settings)
                 return
 
             # Do we even look for that sender?
@@ -298,7 +299,7 @@ class Email(MycroftSkill):
                 self.remove_event('poll.emails')
                 self.speak_dialog("stop.poll.emails.last.email.removed")
 
-        self.settings.store()
+        save_settings(self.root_dir, self.settings)
 
     @intent_file_handler('check.email.intent')
     def handle_email(self, message):
