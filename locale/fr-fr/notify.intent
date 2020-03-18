@@ -1,0 +1,8 @@
+parle moi de mes (emails|courriels|mails)
+dis-moi quand je reçois un (mail | email | courriel | nouveau mail | nouvel email | nouveau courriel)
+dis-moi quand je reçois (un mail | un courriel | un email) (de | provenant de) {sender}
+parle-me des (mails|emails|courriels) (de | provenant de) {sender}
+notifie moi des (emails | mails | courriels | nouveaux emails | nouveaux mails | nouveaux courriels)
+M'avertir quand je reçois un (message | nouveau message | courriel | nouveau courriel) de {sender}
+M'avertir quand je reçois un (message | courriel | nouveau message | nouveau courriel)
+dis-moi quand je reçois (un mail | un courriel | un email) (de | provenant de) {sender}

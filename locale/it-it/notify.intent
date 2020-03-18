@@ -1,0 +1,8 @@
+controlla la (posta|email|nuova posta|email)
+Avvisami quando arriva (posta|email|nuova posta|nuova email)
+Avvisami quando arriva (nuova posta|una email|email) da {sender}
+Controlla la (posta|email) da {sender}
+Avvisami di (posta|email|nuova posta|nuove email)
+Avvisami dell'arrivo di (posta|eamil|nuova posta|nuove emial) da {sender}
+Avvisami quando ricevo (posta|email|nuova posta|nuove email)
+Avvisami quando ricevo (posta|una email|email) da {sender}

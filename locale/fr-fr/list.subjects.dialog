@@ -1,3 +1,2 @@
-Le numéro {message_num} vient de {sender} Son objet est {subject}
-L'objet du numéro {message_num} est {subject} Il vient de {sender}
-Le message numéro {message_num} vient de {sender} Son objet est {subject}
+Le numéro de courriel {message_num} vient de {sender} Son sujet est {subject}
+Le courriel du numéro {message_num} est de sujet {subject} Il vient de {sender}

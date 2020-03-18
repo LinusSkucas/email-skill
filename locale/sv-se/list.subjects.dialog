@@ -1,3 +1,2 @@
-nummer {message_num} är från {sender} Ämnet är {subject}
-nummer {message_num}:s ämne är {subject} Det är från {sender}
-meddelande nummer {message_num} är från {sender} Ämnet är {subject}
+Ditt epost {message_num} är från {sender} Ämnet är {subject}
+Meddelandet {message_num} epostämne är {subject} Det är från {sender}

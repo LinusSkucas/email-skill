@@ -1,0 +1,8 @@
+Me (informe|fale) sobre (o|os) (novos|) (email|emails)
+Me (informe|fale) quando eu receber (novo|novos|) ( email | emails ) 
+Me (informe|avise|fale) quando eu receber (um|) email (vindo|) de {sender}
+Me (informe|avise|fale) sobre (email|emails) (vindo|) de {sender}
+Me notifique sobre (os|) (novos emails | emails) 
+Me (notifique|avise) sobre (os|) (emails | novos emails) ( vindo de | de | enviados por ) {sender}
+Me (notifique|avise) quando (eu receber|chegar) ( um email | email | emails | novos emails )
+Me (notifique|avise) quando (eu receber|chegar|chegarem) (um email | email | emails | novos emails ) (de| vindo de| enviado por) {sender}
