@@ -1,3 +1,2 @@
-Nombre {message_num} de {sender} L'assumpte és {subject}
-Missatge {message_num} amb assumpte {subject} del remitent {sender}
-Missatge nombre {message_num} de {sender} amb assumpte {subject}
+El missatge número {message_num} és de {sender}. L'assumpte és {subject}
+L'assumpte del missatge {message_num} és {subject}. L'envia {sender}

@@ -1,0 +1,8 @@
+Dime si hay (correo | correo electrónico | nuevo correo | email)
+Dime cuando tenga (correo | correo electrónico | nuevo correo | email)
+Dime cuando tenga (un correo | un correo electrónico | email) (de | por) {sender}
+Dime de (correo | email) (de | por) {sender}
+Notifícame de (correo | email | nuevo correo | nuevo email)
+avísame cuando tenga (un|) (correo | correo electrónico | nuevo correo | email) (de | procedente de) {sender}
+avísame cuando tenga (un|) (correo | correo electrónico | nuevo correo | email)
+avísame cuando tenga (un|) (correo |correo electrónico |email) (de | procedente de) {sender}
