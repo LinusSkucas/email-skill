@@ -1,0 +1,2 @@
+Tu correo {message_num} es de {sender}. El asunto es {subject}.
+El asunto del correo {message_num} es {subject} Es de {sender}.

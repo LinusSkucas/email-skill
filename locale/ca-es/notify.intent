@@ -1,0 +1,8 @@
+digues-me si tinc (correu | correu electrònic | nou correu | correu electrònic)
+digues-me quan tingui (correu | correu electrònic | nou correu | correu electrònic)
+digues-me quan rebi (un correu | un correu electrònic | un correu electrònic) (de) {sender}
+avisa'm de (correu | correu electrònic) (de) {sender}
+notifica'm de (correu | correu electrònic | correu nou | correu electrònic nou)
+notifica'm de (correu | correu electrònic | correu nou | correu electrònic nou) (de) {sender}
+notifica'm quan rebi (correu | correu electrònic | correu nou | correu electrònic nou)
+notifica'm quan rebi (un correu | un correu electrònic | correu electrònic) (de) {sender}
